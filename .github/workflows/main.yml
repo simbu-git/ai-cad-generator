@@ -28,7 +28,15 @@ jobs:
       - name: Verify Python files
         run: |
           python -m py_compile github_submission/app.py
-          python -m py_compile github_submission/verify_pipeline.py
+          python -m py_compile github_submission/verify_aicad.py
+          python -m py_compile github_submission/cad_engine.py
+          python -m py_compile github_submission/vision_pipeline.py
+          python -m py_compile github_submission/pdf_generator.py
+
+      - name: Run verification
+        run: |
+          cd github_submission
+          python verify_aicad.py
 
       - name: Run verification
         run: |
