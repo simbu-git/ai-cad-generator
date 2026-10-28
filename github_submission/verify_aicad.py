@@ -19,7 +19,17 @@ from pdf_generator import generate_cad_pdf_report, render_cad_isometric_image
 
 
 def test_full_suite():
-    assets_dir = r"C:\Users\simbu T\.gemini\antigravity\scratch\ai-room-reconstruction\assets"
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+possible_assets = [
+    os.path.join(base_dir, "assets"),
+    os.path.join(os.path.dirname(base_dir), "assets"),
+]
+
+assets_dir = next(
+    (path for path in possible_assets if os.path.isdir(path)),
+    possible_assets[0]
+)
     meta = {
         "doc_id": "CAD-TEST-2026",
         "author": "Simbu T",
